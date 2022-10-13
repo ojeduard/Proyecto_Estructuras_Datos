@@ -11,8 +11,9 @@
 
 class Player {
 private:
+    // Define players
     std::string name;
-    std::vector<Node*> letters;
+    std::vector<Node*> letters; // This STL or better linked list
 
 public:
     Player(const std::string &name, const std::vector<Node *> &letters);
