@@ -13,9 +13,16 @@ class Node {
 private:
     LetterBlock letter;
     Node * next;
+    Node * nextDown;
+
+
 
 public:
-    Node(LetterBlock = nullptr, Node* = nullptr);
+    Node(LetterBlock l , Node* = nullptr,Node* = nullptr);
+
+    Node *getNextDown() const;
+
+    void setNextDown(Node *nextDown);
 
     const LetterBlock &getLetter() const;
 

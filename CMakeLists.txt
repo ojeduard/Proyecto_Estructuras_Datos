@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(src)
 
-add_executable(Proyecto_Estructuras_Datos main.cpp src/DataBase.cpp src/DataBase.h src/LetterBlock.cpp src/LetterBlock.h src/Player.cpp src/Player.h src/Node.cpp src/Node.h)
+add_executable(Proyecto_Estructuras_Datos main.cpp src/DataBase.cpp src/DataBase.h src/LetterBlock.cpp src/LetterBlock.h src/Player.cpp src/Player.h src/Node.cpp src/Node.h src/Board.cpp src/Board.h src/Game.cpp src/Game.h)

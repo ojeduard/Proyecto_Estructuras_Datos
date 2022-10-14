@@ -32,3 +32,11 @@ void Player::addLetter(Node* node) {
 Player::~Player() {
 
 }
+
+std::string Player::getLettersasString() {
+    std::string word = "";
+    for(Node *letter : letters)
+        word += letter->getLetter().getLetter();
+
+    return word;
+}

@@ -15,6 +15,7 @@ private:
     std::string name;
     std::vector<Node*> letters; // This STL or better linked list
 
+
 public:
     Player(const std::string &name, const std::vector<Node *> &letters);
 
@@ -29,6 +30,8 @@ public:
     void setLetters(const std::vector<Node *> &letters);
 
     void addLetter(Node* node);
+
+    std::string getLettersasString();
 
     virtual ~Player();
 

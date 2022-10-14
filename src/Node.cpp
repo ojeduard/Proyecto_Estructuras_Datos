@@ -3,6 +3,11 @@
 //
 
 #include "Node.h"
+Node::Node(LetterBlock l, Node* sig,Node* dow){
+    letter = l;
+    next = sig;
+    nextDown = dow;
+}
 
 const LetterBlock &Node::getLetter() const {
     return letter;
@@ -27,4 +32,12 @@ std::ostream &operator<<(std::ostream &os, const Node &node) {
 
 Node::~Node() {
 
+}
+
+Node *Node::getNextDown() const {
+    return nextDown;
+}
+
+void Node::setNextDown(Node *nextDown) {
+    Node::nextDown = nextDown;
 }
