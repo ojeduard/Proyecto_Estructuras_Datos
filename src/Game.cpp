@@ -7,8 +7,8 @@
 Game::Game() {
     Players = new std::vector<Player>;
     board = new Board();
-    availableletters[0] ='a'; availableletters[1] = 'e';availableletters[2] = 'i';availableletters[3] = 'o';availableletters[4] = 'u';
-    availableletters[5] = 'r';availableletters[6] = 's';availableletters[7] = 't';availableletters[8] = 'm';availableletters[9] = 'c';
+    availableletters[0] ='A'; availableletters[1] = 'E';availableletters[2] = 'I';availableletters[3] = 'O';availableletters[4] = 'U';
+    availableletters[5] = 'R';availableletters[6] = 'S';availableletters[7] = 'T';availableletters[8] = 'M';availableletters[9] = 'C';
 }
 
 Game::~Game() {
@@ -29,7 +29,4 @@ void Game::addPlayer(Player& Jug) {
     Players->push_back(Jug);
 }
 
-bool Game::validacionPalabrasegunFichas(std::string pal, Player pl) {
 
-    return false;
-}

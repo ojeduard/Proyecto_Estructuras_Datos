@@ -16,7 +16,8 @@ public:
     Game();
     virtual ~Game();
     void addPlayer(Player &Jug);
-    bool validacionPalabrasegunFichas(std::string,Player);
+
+
 
 
 

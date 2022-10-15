@@ -9,10 +9,10 @@ Board::Board(){
             if (i == 0 && j == 0)
                 board[i][j] = new Node(LetterBlock(' '));
             else if (i == 0) {
-                char word = 'A' + (j - 1);
+                char word = 'a' + (j - 1);
                 board[i][j] = new Node(LetterBlock(word));
             } else if (j == 0) {
-                board[i][j] = new Node(LetterBlock('0' + i));
+                board[i][j] = new Node(LetterBlock('0' + i-1));
             }
             else
                 board[i][j] = new Node(LetterBlock('v'));
@@ -24,7 +24,7 @@ std::string Board::toString() {
     std::stringstream s;
     for(int i=0;i<11;i++) {
         for (int j = 0; j < 11; j++) {
-            s << board[i][j]->getLetter() << "  ";
+            s << board[i][j]->getLetter().getLetter() << "  ";
         }
         s<<std::endl;
     }

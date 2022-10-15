@@ -32,6 +32,8 @@ public:
     void addLetter(Node* node);
 
     std::string getLettersasString();
+    
+    bool canBuildWord(std::string);
 
     virtual ~Player();
 

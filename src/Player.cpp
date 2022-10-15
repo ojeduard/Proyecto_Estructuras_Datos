@@ -40,3 +40,16 @@ std::string Player::getLettersasString() {
 
     return word;
 }
+bool Player::canBuildWord(std::string pal) {
+
+    for (int i = 0; i < letters.size(); i++) {
+        bool bandera = false;
+        for (int j = 0; j < pal.length(); i++) {
+            if (letters.at(i)->getLetter().getLetter() == pal.at(j))
+                bandera = true;
+        }
+        if (!bandera)
+            return false;
+    }
+    return true;
+}

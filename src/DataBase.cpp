@@ -5,15 +5,15 @@
 #include "DataBase.h"
 
 
-bool DataBase::searchWord(std::string fileName, std::string word) {
+bool DataBase::searchWord(std::string word) {
     // create a file
-    std::ifstream file(fileName);
+    std::ifstream file("../data.txt");
     std::string line;
     int offset;
 
     // Check if it is open
     if (!file.is_open()){
-        throw std::invalid_argument("File " + fileName  + "is not available.");
+        throw std::invalid_argument("File: ../data.txt is not available.");
     }
 
     // Check line by line

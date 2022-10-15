@@ -1,6 +1,6 @@
 #include <iostream>
 #include "DataBase.h"
-
+#include "Board.h"
 int main() {
 //    std::cout << "Hello, World!" << std::endl;
 //
@@ -9,15 +9,9 @@ int main() {
 //    } else{
 //        std::cout << "False";
 //    }
-    int cont = 0;
-    srand(time(nullptr));
-    while(cont < 6){
-
-        int valRandom = rand()%10;
-        std::cout<<valRandom<<std::endl;
-        cont++;
-    }
-
+   Board* tab = new Board();
+    std::cout<<tab->toString()<<std::endl;
+    delete tab;
 
     return 0;
 }

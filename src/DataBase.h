@@ -11,7 +11,7 @@
 class DataBase {
 public:
     // Searching a word in the txt file
-    bool static searchWord(std::string fileName, std::string word);
+    bool static searchWord(std::string word);
 
 };
 
