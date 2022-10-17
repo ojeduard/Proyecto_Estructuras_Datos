@@ -39,6 +39,9 @@ public:
 
     virtual ~Player();
 
+    std::string toString();
+
+
 
 };
 

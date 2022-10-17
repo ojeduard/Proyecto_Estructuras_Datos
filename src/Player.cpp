@@ -3,7 +3,7 @@
 //
 
 #include "Player.h"
-
+#include <sstream>
 
 Player::Player(const std::string &name, const std::vector<Node *> &letters) : name(name), letters(letters) {}
 
@@ -33,6 +33,8 @@ Player::~Player() {
 
 }
 
+bool Player::LetterblockIsEmpty(){return letters.empty();}
+
 std::string Player::getLettersasString() {
     std::string word = "";
     for(Node *letter : letters)
@@ -54,3 +56,14 @@ bool Player::canBuildWord(std::string pal) {
     }
     return true;
 }
+
+std::string Player::toString(){
+    std::stringstream s;
+    s<<"Player: "<<name<<" ";
+    for(Node* no: letters){
+        s<<no->getLetter()<<" ";
+    }
+    return s.str();
+
+}
+

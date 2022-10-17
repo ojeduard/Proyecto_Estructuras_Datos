@@ -17,7 +17,16 @@ public:
     Game();
     virtual ~Game();
     void addPlayer(Player &Jug);
+    bool isOver();
+    Player Winner();
 
+    void setBoard(Board *board);
+    bool isInDAO(std::string word);
+
+
+    Board *getBoard() const;
+
+    std::vector<Player> *getPlayers() const;
 
 
 };
