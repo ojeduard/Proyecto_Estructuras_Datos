@@ -35,6 +35,8 @@ public:
     
     bool canBuildWord(std::string);
 
+    bool LetterblockIsEmpty();
+
     virtual ~Player();
 
 

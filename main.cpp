@@ -9,9 +9,11 @@ int main() {
 //    } else{
 //        std::cout << "False";
 //    }
-   Board* tab = new Board();
-    std::cout<<tab->toString()<<std::endl;
-    delete tab;
+//   Board* tab = new Board();
+//    std::cout<<tab->toString()<<std::endl;
+//    delete tab;
+    GameMenu* game = new GameMenu();
+    delete game;
 
     return 0;
 }

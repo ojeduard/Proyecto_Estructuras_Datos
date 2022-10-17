@@ -15,7 +15,7 @@ Board::Board(){
                 board[i][j] = new Node(LetterBlock('0' + i-1));
             }
             else
-                board[i][j] = new Node(LetterBlock('v'));
+                board[i][j] = new Node(LetterBlock('-'));
         }
     }
 }

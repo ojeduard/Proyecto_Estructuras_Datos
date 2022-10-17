@@ -37,6 +37,7 @@ std::string Player::getLettersasString() {
     std::string word = "";
     for(Node *letter : letters)
         word += letter->getLetter().getLetter();
+        word += " ";
 
     return word;
 }
