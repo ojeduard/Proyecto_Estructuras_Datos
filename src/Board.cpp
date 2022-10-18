@@ -42,4 +42,12 @@ void Board::addNode(Node * ingreso, int fila, int columnna) {
 Board::~Board() {
 
 }
+Node* Board::isEmpty(int x,int y){
+    return board[x][y];
+}
+bool Board::centerEmpty(){
+   if(isEmpty(4,5)||isEmpty(4,4)||isEmpty(5,4)||isEmpty(5,5))
+   return false;
+   return true;
+}
 

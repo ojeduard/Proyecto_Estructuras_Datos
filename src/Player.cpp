@@ -59,11 +59,23 @@ bool Player::canBuildWord(std::string pal) {
 
 std::string Player::toString(){
     std::stringstream s;
-    s<<"Player: "<<name<<" ";
+    s<<"Player: "<<name<<"Available letters: ";
     for(Node* no: letters){
         s<<no->getLetter()<<" ";
     }
     return s.str();
 
+}
+Node* Player::getAt(char letter){
+    for(Node* n: letters){
+        if(n->getLetter().getLetter() == letter){
+            std::remove(letters.begin(), letters.end(), n);
+            return n;
+
+        }
+    }
+
+
+    return nullptr;
 }
 

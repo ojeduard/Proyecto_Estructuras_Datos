@@ -37,6 +37,8 @@ public:
 
     bool LetterblockIsEmpty();
 
+    Node* getAt(char);
+
     virtual ~Player();
 
     std::string toString();

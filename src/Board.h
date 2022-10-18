@@ -15,7 +15,8 @@ public:
     virtual~Board();
     std::string toString();
     void addNode(Node*, int, int);
-    bool isEmpty(int,int);
+    Node* isEmpty(int,int);
+    bool centerEmpty();
 
 
 };

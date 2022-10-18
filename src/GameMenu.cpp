@@ -114,7 +114,14 @@ bool GameMenu::firstPlay(Player &player) {
     char select = '0';
     bool playOver = false;
     char letter;
-    std::vector<Node> aux;
+    char column;
+    int row;
+    int column2;
+    int cont = 0;
+    int continu = 1;
+    std::string word = "";
+
+    std::vector<Node*> aux;
 
     do {
 
@@ -126,6 +133,8 @@ bool GameMenu::firstPlay(Player &player) {
     }while(select != '1' && select != '2' );
 
     while (!playOver){
+        system("clear");
+        game->getBoard()->toString();
         std::cout << "Available letters" << std::endl;
         std::cout << player.toString();
 
