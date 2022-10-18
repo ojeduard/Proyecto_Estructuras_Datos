@@ -91,7 +91,7 @@ void GameMenu::startGame() {
             // Not first play
             if (play != 0 ){
 
-
+                std::cout << "FUNCIONA" << std:: endl;
             }else{
                 // First play
                 if (firstPlay(p)){
@@ -127,12 +127,45 @@ bool GameMenu::firstPlay(Player &player) {
 
     while (!playOver){
         std::cout << "Available letters" << std::endl;
-        player.getLetters();
+        std::cout << player.toString();
 
-        std::cout << "Enter your letter: "; std::cin>>letter;
-        LetterBlock letterBlock(letter);
+
+        if (select == '1') {
+            if (cont == 0) {
+            std::cout << "Enter the column of the letter(a-j)";
+            std::cin >> column;
+            column = toupper(column);
+            column2 = column - 64;
+            std::cout << "Enter the line of the letter(a-)";
+            std::cin >> row;
+            }
+            std::cout << "Enter your letter: "; std::cin>>letter;
+
+            if (player.getAt(letter)){
+                aux.push_back(player.getAt(letter));
+                word += letter;
+                game->getBoard()->addNode(player.getAt(letter), row, column2);
+
+                std::cout << "Do you want to add another letter? (PRESS 0) ";
+                std::cin >> playOver;
+
+
+            }else {
+                std::cout << "The letter does not exist!";
+                system("pause");
+
+            }
+
+        }
 
     }
+
+    if (game->getBoard()->centerEmpty() && DataBase::searchWord(word)){
+        return true;
+    }
+    return false;
+
+
 }
 
 

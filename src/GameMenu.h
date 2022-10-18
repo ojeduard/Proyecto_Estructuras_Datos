@@ -5,7 +5,7 @@
 #ifndef PROYECTO_ESTRUCTURAS_DATOS_GAMEMENU_H
 #define PROYECTO_ESTRUCTURAS_DATOS_GAMEMENU_H
 #include "Game.h"
-#include "vector
+#include "vector"
 
 
 class GameMenu {
