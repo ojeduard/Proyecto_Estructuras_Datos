@@ -158,10 +158,12 @@ bool GameMenu::firstPlay(Player &player) {
             if (player.getAt(letter)){
                 aux.push_back(player.getAt(letter));
                 word += letter;
-                game->getBoard()->addNode(player.getAt(letter), row, column2);
+
 
                 std::cout << "Do you want to add another letter? (PRESS 0) ";
                 std::cin >> playOver;
+
+
 
 
             }else {
