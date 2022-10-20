@@ -134,21 +134,26 @@ bool GameMenu::firstPlay(Player &player) {
 
     while (!playOver){
         system("clear");
-        game->getBoard()->toString();
+        if(word.size() > 0)
+            std::cout<<"Palabra formandose: "<<word <<std::endl;
+
+        std::cout << player.toString();
         std::cout << "Available letters" << std::endl;
         std::cout << player.toString();
 
 
         if (select == '1') {
             if (cont == 0) {
-            std::cout << "Enter the column of the letter(a-j)";
-            std::cin >> column;
-            column = toupper(column);
-            column2 = column - 64;
-            std::cout << "Enter the line of the letter(a-)";
-            std::cin >> row;
+                std::cout << "Enter the column of the letter(a-j)";
+                std::cin >> column;
+                column = toupper(column);
+                column2 = column - 64;
+                std::cout << "Enter the line of the letter(0-9)";
+                std::cin >> row;
+                cont++;
             }
             std::cout << "Enter your letter: "; std::cin>>letter;
+
 
             if (player.getAt(letter)){
                 aux.push_back(player.getAt(letter));
