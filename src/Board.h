@@ -5,6 +5,7 @@
 #ifndef PROYECTO_ESTRUCTURAS_DATOS_BOARD_H
 #define PROYECTO_ESTRUCTURAS_DATOS_BOARD_H
 #include "Node.h"
+#include "List.h"
 #include <sstream>
 #include <iostream>
 class Board {

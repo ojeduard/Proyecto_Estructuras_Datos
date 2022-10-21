@@ -20,6 +20,7 @@ public:
     void insertPlayer(int);
     void startGame();
     bool firstPlay(Player& player);
+    bool afterFirstPlay(Player& player);
     virtual ~GameMenu();
 
 };

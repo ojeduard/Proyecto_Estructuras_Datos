@@ -85,8 +85,6 @@ void GameMenu::secondMenu() {
 void GameMenu::startGame() {
     int play = 0; //if play is 0, it means it is the first play
     while (!game->isOver()){
-        std::cout << game->getBoard()->toString();
-
         for (Player p : *game->getPlayers()){
             // Not first play
             if (play != 0 ){
@@ -120,8 +118,8 @@ bool GameMenu::firstPlay(Player &player) {
     int cont = 0;
     int continu = 1;
     std::string word = "";
-
     std::vector<Node*> aux;
+    std::cout << game->getBoard()->toString();
 
     do {
 
@@ -183,7 +181,13 @@ bool GameMenu::firstPlay(Player &player) {
 
 
 }
-//
+
+bool GameMenu::afterFirstPlay(Player &player) {
+    std::cout << game->getBoard()->toString();
+
+    return false;
+}
+
 
 
 

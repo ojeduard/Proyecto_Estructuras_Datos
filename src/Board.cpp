@@ -3,6 +3,7 @@
 //
 
 #include "Board.h"
+#include "List.h"
 Board::Board(){
     for(int i=0;i<11;i++) {
         for (int j = 0; j < 11; j++) { //Ingreso de la primera fila y primera columna por default
