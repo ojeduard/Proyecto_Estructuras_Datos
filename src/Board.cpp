@@ -69,3 +69,4 @@ void Board::addToBoard(std::string type, List list, int column, int row) {
 void Board::addHor(List list, int column, int row){
 
 }
+//
