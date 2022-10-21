@@ -88,14 +88,12 @@ void GameMenu::startGame() {
         for (Player p : *game->getPlayers()){
             // Not first play
             if (play != 0 ){
-
-                std::cout << "FUNCIONA" << std:: endl;
+                afterFirstPlay(p);
             }else{
                 // First play
                 if (firstPlay(p)){
                     play++;
                 }
-
             }
             // Validate if there are LetterBlocks
             if (game->isOver())
@@ -135,9 +133,7 @@ bool GameMenu::firstPlay(Player &player) {
         if(word.size() > 0)
             std::cout<<"Palabra formandose: "<<word <<std::endl;
 
-        std::cout << player.toString();
-        std::cout << "Available letters" << std::endl;
-        std::cout << player.toString();
+        std::cout << player.toString()<<std::endl;
 
 
         if (select == '1') {
@@ -156,14 +152,9 @@ bool GameMenu::firstPlay(Player &player) {
             if (player.getAt(letter)){
                 aux.push_back(player.getAt(letter));
                 word += letter;
-
-
                 std::cout << "Do you want to add another letter? (PRESS 0) ";
                 std::cin >> playOver;
-
-
-
-
+                std::cout<<word<<std::endl;
             }else {
                 std::cout << "The letter does not exist!";
                 system("pause");
@@ -175,9 +166,16 @@ bool GameMenu::firstPlay(Player &player) {
     }
 
     if (game->getBoard()->centerEmpty() && DataBase::searchWord(word)){
+
+        std::cout<<"Jugada Valida "<<std::endl;
         return true;
+    }else{
+        std::cout<<"Jugada Invalida, turno del siguiente jugador "<<std::endl;
+        game->devuelveLetras(word,player);
+        std::cout<<player.toString()<<std::endl;
+        return false;
     }
-    return false;
+
 
 
 }

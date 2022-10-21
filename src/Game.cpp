@@ -58,6 +58,15 @@ bool Game::isInDAO(std::string word) {
 std::vector<Player> *Game::getPlayers() const {
     return players;
 }
+void Game::devuelveLetras(std::string pal,Player jug){
+    for(int i=0;i<pal.size();i++){
+        char letra = pal.at(i);
+        LetterBlock letr(letra);
+        Node* n = new Node(letr);
+        jug.addLetter(n);
+    }
+
+}
 
 
 

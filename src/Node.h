@@ -32,6 +32,7 @@ public:
 
     void setNext(Node *next);
 
+
     friend std::ostream &operator<<(std::ostream &os, const Node &node);
 
     virtual ~Node();
