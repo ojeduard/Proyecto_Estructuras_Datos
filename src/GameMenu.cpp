@@ -74,6 +74,7 @@ void GameMenu::secondMenu() {
             case '3':
                 system("clear");
                 insertPlayer(4);
+            default: std::cout<<"Opcion Invalida"<<std::endl;
         }
         select = '0';
 
@@ -86,6 +87,7 @@ void GameMenu::startGame() {
     int play = 0; //if play is 0, it means it is the first play
     while (!game->isOver()){
         for (Player p : *game->getPlayers()){
+
             // Not first play
             if (play != 0 ){
                 afterFirstPlay(p);
@@ -102,6 +104,8 @@ void GameMenu::startGame() {
         system("clear");
 
     }
+    std::cout<<"El ganador es: "<<game->Winner().getName()<<std::endl;
+    std::cout<<"El ganador es: "<<"FELICIDADES!"<<std::endl;
 
 
 }
@@ -116,7 +120,7 @@ bool GameMenu::firstPlay(Player &player) {
     int cont = 0;
     int continu = 1;
     std::string word = "";
-    std::vector<Node*> aux;
+    List aux;
     std::cout << game->getBoard()->toString();
 
     do {
@@ -130,54 +134,55 @@ bool GameMenu::firstPlay(Player &player) {
 
     while (!playOver){
         system("clear");
+
+
+        while(cont == 0){
+            std::cout << "Enter the column of the letter(a-i)";
+            std::cin >> column;
+            column = toupper(column);
+            column2 = column - 64;
+            std::cout << "Enter the line of the letter(0-8)";
+            std::cin >> row;
+            if(column2 < 10 && row < 9 )
+
+                cont++;
+            else
+                std::cout<<"Posicion Incorrecta, Ingrese de Nuevo"<<std::endl;
+        }
         if(word.size() > 0)
             std::cout<<"Palabra formandose: "<<word <<std::endl;
 
         std::cout << player.toString()<<std::endl;
+        std::cout << "Enter your letter: "; std::cin>>letter;
 
-
-        if (select == '1') {
-            if (cont == 0) {
-                std::cout << "Enter the column of the letter(a-j)";
-                std::cin >> column;
-                column = toupper(column);
-                column2 = column - 64;
-                std::cout << "Enter the line of the letter(0-9)";
-                std::cin >> row;
-                cont++;
-            }
-            std::cout << "Enter your letter: "; std::cin>>letter;
-
-
-            if (player.getAt(letter)){
-                aux.push_back(player.getAt(letter));
-                word += letter;
-                std::cout << "Do you want to add another letter? (PRESS 0) ";
-                std::cin >> playOver;
-                std::cout<<word<<std::endl;
-            }else {
-                std::cout << "The letter does not exist!";
-                system("pause");
-
-            }
+        if (player.isLetter(letter)){
+            aux.add(select,player.getAt(letter));
+            word += letter;
+            std::cout << "Do you want to add another letter? (PRESS 0) ";
+            std::cin >> playOver;
+            std::cout<<word<<std::endl;
+        }else {
+            std::cout << "The letter does not exist!";
+            system("pause");
 
         }
 
     }
 
+    game->getBoard()->PrePlay(row+1, column2, word.size(), select);
+    std::cout<<game->getBoard()->toString()<<std::endl;
     if (game->getBoard()->centerEmpty() && DataBase::searchWord(word)){
-
         std::cout<<"Jugada Valida "<<std::endl;
+        game->getBoard()->addToBoard(select, aux, column2, row+1);
+        std::cout << game->getBoard()->toString()<<std::endl;
         return true;
     }else{
         std::cout<<"Jugada Invalida, turno del siguiente jugador "<<std::endl;
         game->devuelveLetras(word,player);
+        game->getBoard()->reset();
         std::cout<<player.toString()<<std::endl;
         return false;
     }
-
-
-
 }
 
 bool GameMenu::afterFirstPlay(Player &player) {

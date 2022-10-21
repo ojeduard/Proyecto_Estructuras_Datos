@@ -4,19 +4,33 @@
 
 #include "List.h"
 #include <sstream>
+#include <iostream>
+
 List::List(Node* in){
     Begin = in;
 }
 
-std::string List::toString(){
-    std::stringstream s;
+void List::mostrarNext(){
+
     Node* p = Begin;
-    s<<"Palabra: ";
+    std::cout<<"Palabra: ";
     while(p){
-        s<<p->getLetter().getLetter();
+        if(p)
+        std::cout<<p->getLetter().getLetter();
         p = p->getNext();
     }
-    return s.str();
+
+}
+void List::mostrarDown(){
+
+    Node* p = Begin;
+    std::cout<<"Palabra: ";
+    while(p){
+        if(p)
+        std::cout<<p->getLetter().getLetter();
+        p = p->getNextDown();
+    }
+
 };
 void List::addRight(Node* neW){
     Node* p = Begin;
@@ -42,6 +56,19 @@ void List::addDown(Node* neW){
         p->setNextDown(neW);
     }
 
+}
+
+void List::add(char ori, Node * node) {
+    if(ori == '1'){
+        addDown(node);
+    }
+    if(ori == '2'){
+        addRight(node);
+    }
+}
+
+Node *List::getBegin() const {
+    return Begin;
 }
 
 

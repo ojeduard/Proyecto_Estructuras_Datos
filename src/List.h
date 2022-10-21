@@ -15,7 +15,11 @@ public:
     List(Node* = nullptr);
     void addRight(Node*);
     void addDown(Node*);
-    std::string toString();
+    void mostrarNext();
+    void mostrarDown();
+    void add(char,Node*);
+    Node *getBegin() const;
+
 };
 
 

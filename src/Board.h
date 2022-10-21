@@ -21,6 +21,9 @@ public:
     void addToBoard(std::string type, List, int, int);
     void addVer(List, int, int);
     void addHor(List, int, int);
+    void reset();
+    void PrePlay(int,int,int,char);
+
 
 };
 

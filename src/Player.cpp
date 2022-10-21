@@ -67,16 +67,16 @@ std::string Player::toString(){
 
 }
 Node* Player::getAt(char letter){
-    int cont = 0;
-    for(Node* n: letters){
-        if(n->getLetter().getLetter() == letter){
-            letters.erase(letters.begin()+cont);
+
+
+    for (int i = 0; i < letters.size(); i++) {
+        if(letters.at(i)->getLetter().getLetter() == letter){
+            Node* n = letters.at(i);
+            letters.erase(letters.begin()+i);
             return n;
-
         }
-        cont++;
-    }
 
+    }
 
     return nullptr;
 }

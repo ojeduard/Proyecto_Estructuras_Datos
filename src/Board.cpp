@@ -47,7 +47,7 @@ Node* Board::isEmpty(int x,int y){
     return board[x][y];
 }
 bool Board::centerEmpty(){
-   if(!isEmpty(5,5))
+   if(isEmpty(5,5)->getLetter().getLetter() == '-')
        return false;
    return true;
 }
@@ -69,4 +69,24 @@ void Board::addToBoard(std::string type, List list, int column, int row) {
 void Board::addHor(List list, int column, int row){
 
 }
+void Board::reset(){
+    for(int i=0;i<10;i++) {
+        for (int j = 0; j < 10; j++) { //Ingreso de la primera fila y primera columna por default
+            if(board[i][j]->getLetter().getLetter() == '*')
+                board[i][j]->setLetter(LetterBlock('-'));
+        }
+    }
+}
+void Board::PrePlay(int f,int c,int tam,char ori){
+    if(ori == '1'){
+        for(int i=0;i<tam;i++);
+            board[f++][c]->setLetter(LetterBlock('*'));
+    }
+    if(ori == '2'){
+        for(int i=0;i<tam;i++);
+        board[f][c++]->setLetter(LetterBlock('*'));
+    }
+}
+
+
 //
