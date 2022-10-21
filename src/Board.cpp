@@ -51,22 +51,32 @@ bool Board::centerEmpty(){
        return false;
    return true;
 }
-void Board::addVer(List list, int column, int row){
-//    while(list){
-//
-//    }
+void Board::addHor(List list, int column, int row){
+    Node * aux = list.getBegin();
+    while(aux){
+        board[row][column++] = aux;
+        aux = aux->getNext();
+    }
 }
 
-void Board::addToBoard(std::string type, List list, int column, int row) {
-    if (type == "vertical"){
+void Board::addToBoard(char type, List list, int column, int row) {
+    if (type == '1'){
         Board::addVer(list, column, row);
-    }else{
+    }else if (type == '2'){
         Board::addHor(list, column, row);
+    } else{
+        throw std::invalid_argument ("Not selected (Vertical or Horizontal)");
     }
 
 }
 
-void Board::addHor(List list, int column, int row){
+void Board::addVer(List list, int column, int row){
+    Node * aux = list.getBegin();
+    while(aux){
+        board[row++][column] = aux;
+        aux = aux->getNextDown();
+
+    }
 
 }
 void Board::reset(){

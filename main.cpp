@@ -1,7 +1,8 @@
 #include <iostream>
 #include "GameMenu.h"
 int main() {
-    GameMenu* game = new GameMenu();
+    GameMenu *game = new GameMenu();
+
 
     delete game;
 

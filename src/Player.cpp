@@ -81,3 +81,12 @@ Node* Player::getAt(char letter){
     return nullptr;
 }
 
+bool Player::isLetter(char letter){
+    for (auto l : letters){
+        if (l->getLetter().getLetter() == letter){
+            return true;
+        }
+    }
+    return false;
+}
+

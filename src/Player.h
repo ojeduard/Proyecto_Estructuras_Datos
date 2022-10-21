@@ -43,6 +43,8 @@ public:
 
     std::string toString();
 
+    bool isLetter(char letter);
+
 
 
 };

@@ -186,11 +186,90 @@ bool GameMenu::firstPlay(Player &player) {
 }
 
 bool GameMenu::afterFirstPlay(Player &player) {
+    char select = '0';
+    bool playOver = false;
+    char column;
+    int column2;
+    int row;
+    int cont;
+    char letter;
+    std::string word;
+    List aux;
     std::cout << game->getBoard()->toString();
 
-    return false;
-}
+    do {
+        std::cout << "\tJugada 2 " << std::endl << std::endl;
+        std::cout << "\tSelect your move " << std::endl << std::endl;
+        std::cout << "1. Vertical " << std::endl;
+        std::cout << "2. Horizontal " << std::endl;
+        std::cin >> select;
 
+    } while (select != '1' && select != '2');
+
+
+    while (!playOver) {
+        //system("clear");
+        while (cont == 0) {
+            std::cout << "Enter the column of the letter(a-i)";
+            std::cin >> column;
+            column = toupper(column);
+            column2 = column - 64;
+            std::cout << "Enter the line of the letter(0-8)";
+            std::cin >> row;
+            row += 1;
+            if (column2 < 10 && row < 10)
+
+                cont++;
+            else
+                std::cout << "Posicion Incorrecta, Ingrese de Nuevo" << std::endl;
+        }
+        if (word.size() > 0)
+            std::cout << "Palabra formandose: " << word << std::endl;
+
+        if (select == '1') {
+            if (game->getBoard()->isEmpty(row++, column2)) {
+                word += game->getBoard()->isEmpty(row++, column2)->getLetter().getLetter();
+                aux.addDown(game->getBoard()->isEmpty(row++, column2));
+            } else {
+                std::cout << player.toString() << std::endl;
+                std::cout << "Enter your letter: ";
+                std::cin >> letter;
+                if (player.isLetter(letter)) {
+                    aux.add(select, player.getAt(letter));
+                    word += letter;
+                }
+
+            }
+
+            if (select == '2') {
+                if (game->getBoard()->isEmpty(row, column2++)) {
+                    word += game->getBoard()->isEmpty(row, column2++)->getLetter().getLetter();
+                    aux.addRight(game->getBoard()->isEmpty(row, column2++));
+                } else {
+                    std::cout << player.toString() << std::endl;
+                    std::cout << "Enter your letter: ";
+                    std::cin >> letter;
+                    if (player.isLetter(letter)) {
+                        aux.add(select, player.getAt(letter));
+                        word += letter;
+                    }
+
+                }
+                std::cout << "Do you want to add another letter? (PRESS 0) ";
+                std::cin >> playOver;
+                std::cout << word << std::endl;
+            } else {
+                std::cout << "The letter does not exist!";
+                system("pause");
+
+            }
+
+        }
+
+
+        return false;
+    }
+}
 
 
 

@@ -18,7 +18,7 @@ public:
     void addNode(Node*, int, int);
     Node* isEmpty(int,int);
     bool centerEmpty();
-    void addToBoard(std::string type, List, int, int);
+    void addToBoard(char type, List, int, int);
     void addVer(List, int, int);
     void addHor(List, int, int);
     void reset();
