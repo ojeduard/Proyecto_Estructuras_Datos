@@ -28,7 +28,7 @@ public:
 
     std::vector<Player> *getPlayers() const;
 
-    void devuelveLetras(std::string,Player);
+    void devuelveLetras(std::string,Player&);
 };
 
 

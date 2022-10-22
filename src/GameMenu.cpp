@@ -16,7 +16,7 @@ void GameMenu::insertPlayer(int select) {
         std::cin>>name;
         Player pl(name);
         game->addPlayer(pl);
-        system("clear");
+        //system("clear");
     }
     startGame();
 
@@ -36,13 +36,13 @@ void GameMenu::mainMenu() {
 
 
         if ( select == '1'){
-            system("clear");
+            //system("clear");
             secondMenu();
         }
 
 
     }while(select != '0');
-    system("clear");
+    //system("clear");
 
 
 
@@ -66,20 +66,20 @@ void GameMenu::secondMenu() {
 
         switch (select) {
             case  '1' :
-                system("clear");
+                //system("clear");
                 insertPlayer(2); break;
             case '2':
-                system("clear");
+                //system("clear");
                 insertPlayer(3); break;
             case '3':
-                system("clear");
+                //system("clear");
                 insertPlayer(4);
             default: std::cout<<"Opcion Invalida"<<std::endl;
         }
         select = '0';
 
     } while (select != '0');
-    system("clear");
+   // system("clear");
 
 }
 
@@ -89,6 +89,8 @@ void GameMenu::startGame() {
         for (Player p : *game->getPlayers()){
 
             // Not first play
+
+
             if (play != 0 ){
                 afterFirstPlay(p);
             }else{
@@ -101,7 +103,7 @@ void GameMenu::startGame() {
             if (game->isOver())
                 break;
         }
-        system("clear");
+        //system("clear");
 
     }
     std::cout<<"El ganador es: "<<game->Winner().getName()<<std::endl;
@@ -121,7 +123,8 @@ bool GameMenu::firstPlay(Player &player) {
     int continu = 1;
     std::string word = "";
     List aux;
-    std::cout << game->getBoard()->toString();
+    std::cout << game->getBoard()->toString()<<std::endl<<std::endl;
+    std::cout<<"Is "<<player.getName()<<" Turn"<<std::endl<<std::endl;
 
     do {
 
@@ -133,7 +136,7 @@ bool GameMenu::firstPlay(Player &player) {
     }while(select != '1' && select != '2' );
 
     while (!playOver){
-        system("clear");
+        //system("clear");
 
 
         while(cont == 0){
@@ -152,7 +155,7 @@ bool GameMenu::firstPlay(Player &player) {
         if(word.size() > 0)
             std::cout<<"Palabra formandose: "<<word <<std::endl;
 
-        std::cout << player.toString()<<std::endl;
+        std::cout << player.toString()<<std::endl<<std::endl;
         std::cout << "Enter your letter: "; std::cin>>letter;
 
         if (player.isLetter(letter)){
@@ -169,19 +172,28 @@ bool GameMenu::firstPlay(Player &player) {
 
     }
 
-    game->getBoard()->PrePlay(row+1, column2, word.size(), select);
-    std::cout<<game->getBoard()->toString()<<std::endl;
-    if (game->getBoard()->centerEmpty() && DataBase::searchWord(word)){
-        std::cout<<"Jugada Valida "<<std::endl;
-        game->getBoard()->addToBoard(select, aux, column2, row+1);
-        std::cout << game->getBoard()->toString()<<std::endl;
-        return true;
-    }else{
-        std::cout<<"Jugada Invalida, turno del siguiente jugador "<<std::endl;
+    if(!game->getBoard()->PrePlay(row+1, column2, word.size(), select)){
+        std::cout<<"\tPlay out of limits of the Board"<< std::endl;
+        std::cout << "\tInvalid Play!, next player turn " << std::endl;
+        std::cout<<game->getBoard()->toString()<<std::endl;
         game->devuelveLetras(word,player);
         game->getBoard()->reset();
-        std::cout<<player.toString()<<std::endl;
         return false;
+    }
+    else {
+        std::cout<<game->getBoard()->toString()<<std::endl;
+        if (game->getBoard()->centerEmpty() && DataBase::searchWord(word)) {
+            std::cout << "Valid Play " << std::endl;
+            game->getBoard()->addToBoard(select, aux, column2, row + 1);
+            std::cout << game->getBoard()->toString() << std::endl;
+            return true;
+        } else {
+            std::cout << "Invalid Play!, next player turn " << std::endl;
+            game->devuelveLetras(word, player);
+            game->getBoard()->reset();
+            std::cout << player.toString() << std::endl;
+            return false;
+        }
     }
 }
 

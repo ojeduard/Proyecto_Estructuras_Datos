@@ -87,16 +87,24 @@ void Board::reset(){
         }
     }
 }
-void Board::PrePlay(int f,int c,int tam,char ori){
+bool Board::PrePlay(int f,int c,int tam,char ori){
     if(ori == '1'){
-        for(int i=0;i<tam;i++);
-            board[f++][c]->setLetter(LetterBlock('*'));
+        for(int i=0;i<tam;i++)
+            if(f < 10)
+                board[f++][c]->setLetter(LetterBlock('*'));
+            else return false;
+
     }
     if(ori == '2'){
-        for(int i=0;i<tam;i++);
-        board[f][c++]->setLetter(LetterBlock('*'));
+        for(int i=0;i<tam;i++)
+            if(c < 10)
+                board[f][c++]->setLetter(LetterBlock('*'));
+            else return false;
     }
+    return true;
 }
+
+
 
 
 //
