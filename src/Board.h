@@ -23,7 +23,7 @@ public:
     void addHor(List, int, int);
     void reset();
     bool PrePlay(int,int,int,char);
-
+    bool validWord(int,int,char);
 
 
 };

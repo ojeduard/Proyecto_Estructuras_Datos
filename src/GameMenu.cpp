@@ -117,8 +117,8 @@ bool GameMenu::firstPlay(Player &player) {
     bool playOver = false;
     char letter;
     char column;
-    int row;
-    int column2;
+    int row = -1;
+    int column2 = -1;
     int cont = 0;
     int continu = 1;
     std::string word = "";
@@ -140,12 +140,23 @@ bool GameMenu::firstPlay(Player &player) {
 
 
         while(cont == 0){
-            std::cout << "Enter the column of the letter(a-i)";
-            std::cin >> column; //no maneja si ingresamos un numero
-            column = toupper(column);
-            column2 = column - 64;
-            std::cout << "Enter the line of the letter(0-8)";
-            std::cin >> row;
+            std::cin.clear();
+
+            while (column2 < 0 || column2 > 9){
+                std::cin.clear();
+                std::cout << "Enter the column of the letter(a-i)";
+                std::cin >> column;
+                column = toupper(column);
+                column2 = column - 64;
+            }
+
+            // Validate if the line is between 0-8
+            while (row < 0 || row > 9){
+                std::cin.clear();
+                std::cout << "Enter the line of the number(0-8)";
+                std::cin >> row;
+            }
+
             if(column2 < 10 && column2 >= 0 && row < 9 && row >= 0)
                 cont++;
             else
@@ -155,12 +166,16 @@ bool GameMenu::firstPlay(Player &player) {
             std::cout<<"Palabra formandose: "<<word <<std::endl;
 
         std::cout << player.toString()<<std::endl<<std::endl;
-        std::cout << "Enter your letter: "; std::cin>>letter;
+        std::cout << "Enter your letter or 0 to skip your turn: "; std::cin>>letter;
+        letter = toupper(letter);
+
+        if (letter == '0')
+            return false;
 
         if (player.isLetter(letter)){
             aux.add(select,player.getAt(letter));
             word += letter;
-            std::cout << "Do you want to add another letter? (PRESS 0) ";
+            std::cout << "Do you want to add another letter? (PRESS 0 TO ADD ANOTHER LETTER) ";
             std::cin >> playOver;
             std::cout<<word<<std::endl;
         }else {
@@ -185,7 +200,7 @@ bool GameMenu::firstPlay(Player &player) {
             std::cout << "Valid Play " << std::endl;
             game->getBoard()->addToBoard(select, aux, column2, row + 1);
             game->getWordsForm()->push_back(aux);
-            std::cout << game->getBoard()->toString() << std::endl;
+//            std::cout << game->getBoard()->toString() << std::endl;
             return true;
         } else {
             std::cout << "Invalid Play!, next player turn " << std::endl;
@@ -201,15 +216,16 @@ bool GameMenu::afterFirstPlay(Player &player) {
     char select = '0';
     bool playOver = false;
     char column;
-    int column2;
-    int row;
+    int column2 = -1;
+    int row = -1;
     int cont = 0;
     char letter;
     std::string word;
     List aux;
-    std::cout << game->getBoard()->toString();
+    std::cout << game->getBoard()->toString()<<std::endl;
     std::cout<<"Is "<<player.getName()<<" Turn"<<std::endl<<std::endl;
     do {
+        std::cin.clear();
         std::cout << "\tSelect your move " << std::endl << std::endl;
         std::cout << "1. Vertical " << std::endl;
         std::cout << "2. Horizontal " << std::endl;
@@ -221,13 +237,23 @@ bool GameMenu::afterFirstPlay(Player &player) {
     while (!playOver) {
         //system("clear");
         while (cont == 0) {
-            std::cout << "Enter the column of the letter(a-i)";
-            std::cin >> column;
-            column = toupper(column);
-            column2 = column - 64;
-            std::cout << "Enter the line of the letter(0-8)";
-            std::cin >> row;
-            row += 1;
+
+            // Validate if the column is between a-i
+            while (column2 < 0 || column2 > 9){
+                std::cin.clear();
+                std::cout << "Enter the column of the letter(a-i)";
+                std::cin >> column;
+                column = toupper(column);
+                column2 = column - 64;
+            }
+
+            // Validate if the line is between 0-8
+            while (row < 0 || row > 9){
+                std::cin.clear();
+                std::cout << "Enter the line of the number(0-8)";
+                std::cin >> row;
+            }
+
             if (column2 < 10 && row < 10)
                 cont++;
             else
@@ -251,28 +277,27 @@ bool GameMenu::afterFirstPlay(Player &player) {
 
             }
 
-            if (select == '2') {
-                if (game->getBoard()->isEmpty(row, column2++)) {
-                    word += game->getBoard()->isEmpty(row, column2++)->getLetter().getLetter();
-                    aux.addRight(game->getBoard()->isEmpty(row, column2++));
-                } else {
-                    std::cout << player.toString() << std::endl;
-                    std::cout << "Enter your letter: ";
-                    std::cin >> letter;
-                    if (player.isLetter(letter)) {
-                        aux.add(select, player.getAt(letter));
-                        word += letter;
-                    }
-
-                }
-                std::cout << "Do you want to add another letter? (PRESS 0) ";
-                std::cin >> playOver;
-                std::cout << word << std::endl;
+        }
+        if (select == '2') {
+            if (game->getBoard()->isEmpty(++row, column2++)->getLetter().getLetter() != '-') {
+                word += game->getBoard()->isEmpty(row, column2++)->getLetter().getLetter();
+                aux.addRight(game->getBoard()->isEmpty(row, column2++));
             } else {
-                std::cout << "The letter does not exist!";
-                system("pause");
+                std::cout << player.toString() << std::endl;
+                std::cout << "Enter your letter: ";
+                std::cin >> letter;
+                if (player.isLetter(letter)) {
+                    aux.add(select, player.getAt(letter));
+                    word += letter;
+                }
 
             }
+            std::cout << "Do you want to add another letter? (PRESS 0) ";
+            std::cin >> playOver;
+            std::cout << word << std::endl;
+        } else {
+            std::cout << "The letter does not exist!";
+            system("pause");
 
         }
 
