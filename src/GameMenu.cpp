@@ -122,7 +122,7 @@ bool GameMenu::firstPlay(Player &player) {
     int cont = 0;
     int continu = 1;
     std::string word = "";
-    List aux;
+    List aux(nullptr,player.getName(),' ');
     std::cout << game->getBoard()->toString()<<std::endl<<std::endl;
     std::cout<<"Is "<<player.getName()<<" Turn"<<std::endl<<std::endl;
 
@@ -134,20 +134,19 @@ bool GameMenu::firstPlay(Player &player) {
         std::cin >> select;
 
     }while(select != '1' && select != '2' );
-
+    aux.setDirection(select);
     while (!playOver){
         //system("clear");
 
 
         while(cont == 0){
             std::cout << "Enter the column of the letter(a-i)";
-            std::cin >> column;
+            std::cin >> column; //no maneja si ingresamos un numero
             column = toupper(column);
             column2 = column - 64;
             std::cout << "Enter the line of the letter(0-8)";
             std::cin >> row;
-            if(column2 < 10 && row < 9 )
-
+            if(column2 < 10 && column2 >= 0 && row < 9 && row >= 0)
                 cont++;
             else
                 std::cout<<"Posicion Incorrecta, Ingrese de Nuevo"<<std::endl;
@@ -185,6 +184,7 @@ bool GameMenu::firstPlay(Player &player) {
         if (game->getBoard()->centerEmpty() && DataBase::searchWord(word)) {
             std::cout << "Valid Play " << std::endl;
             game->getBoard()->addToBoard(select, aux, column2, row + 1);
+            game->getWordsForm()->push_back(aux);
             std::cout << game->getBoard()->toString() << std::endl;
             return true;
         } else {
@@ -203,14 +203,13 @@ bool GameMenu::afterFirstPlay(Player &player) {
     char column;
     int column2;
     int row;
-    int cont;
+    int cont = 0;
     char letter;
     std::string word;
     List aux;
     std::cout << game->getBoard()->toString();
-
+    std::cout<<"Is "<<player.getName()<<" Turn"<<std::endl<<std::endl;
     do {
-        std::cout << "\tJugada 2 " << std::endl << std::endl;
         std::cout << "\tSelect your move " << std::endl << std::endl;
         std::cout << "1. Vertical " << std::endl;
         std::cout << "2. Horizontal " << std::endl;
@@ -230,7 +229,6 @@ bool GameMenu::afterFirstPlay(Player &player) {
             std::cin >> row;
             row += 1;
             if (column2 < 10 && row < 10)
-
                 cont++;
             else
                 std::cout << "Posicion Incorrecta, Ingrese de Nuevo" << std::endl;

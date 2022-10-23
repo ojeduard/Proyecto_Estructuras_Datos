@@ -11,14 +11,19 @@
 class List {
 private:
     Node* Begin;
+    std::string NamePerson;
+    char direction;
 public:
-    List(Node* = nullptr);
+    char getDirection() const;
+    void setDirection(char direction);
+    List(Node* = nullptr,std::string = " ",char = ' ');
     void addRight(Node*);
     void addDown(Node*);
     void mostrarNext();
     void mostrarDown();
     void add(char,Node*);
     Node *getBegin() const;
+
 
 };
 

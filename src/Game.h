@@ -7,13 +7,18 @@
 #include "Player.h"
 #include "Board.h"
 #include "DataBase.h"
+#include "List.h"
 
 class Game {
 private:
     std::vector<Player>* players;
     char availableletters [10];
     Board* board;
+    std::vector<List>* WordsForm;
 public:
+    std::vector<List> *getWordsForm() const;
+
+    void setWordsForm(std::vector<List> *wordsForm);
     Game();
     virtual ~Game();
     void addPlayer(Player &Jug);

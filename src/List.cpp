@@ -6,14 +6,16 @@
 #include <sstream>
 #include <iostream>
 
-List::List(Node* in){
+List::List(Node* in,std::string name,char orientation){
     Begin = in;
+    NamePerson = name;
+    direction = orientation;
 }
 
 void List::mostrarNext(){
 
     Node* p = Begin;
-    std::cout<<"Palabra: ";
+    std::cout<<"Palabra Formada Por "<<NamePerson<<" :";
     while(p){
         if(p)
         std::cout<<p->getLetter().getLetter();
@@ -24,7 +26,7 @@ void List::mostrarNext(){
 void List::mostrarDown(){
 
     Node* p = Begin;
-    std::cout<<"Palabra: ";
+    std::cout<<"Palabra Formada Por "<<NamePerson<<" :";
     while(p){
         if(p)
         std::cout<<p->getLetter().getLetter();
@@ -70,5 +72,15 @@ void List::add(char ori, Node * node) {
 Node *List::getBegin() const {
     return Begin;
 }
+
+char List::getDirection() const {
+    return direction;
+}
+
+void List::setDirection(char direction) {
+    List::direction = direction;
+}
+
+
 
 

@@ -9,6 +9,7 @@ Game::Game() {
     board = new Board();
     availableletters[0] ='A'; availableletters[1] = 'E';availableletters[2] = 'I';availableletters[3] = 'O';availableletters[4] = 'U';
     availableletters[5] = 'R';availableletters[6] = 'S';availableletters[7] = 'T';availableletters[8] = 'M';availableletters[9] = 'C';
+    WordsForm = new std::vector<List>;
 }
 
 Game::~Game() {
@@ -66,6 +67,14 @@ void Game::devuelveLetras(std::string pal,Player& jug){
         jug.addLetter(n);
     }
 
+}
+
+std::vector<List> *Game::getWordsForm() const {
+    return WordsForm;
+}
+
+void Game::setWordsForm(std::vector<List> *wordsForm) {
+    WordsForm = wordsForm;
 }
 
 
