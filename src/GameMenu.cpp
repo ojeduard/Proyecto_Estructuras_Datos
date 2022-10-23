@@ -131,6 +131,7 @@ bool GameMenu::firstPlay(Player &player) {
         std::cout << "\tSelect your move " << std:: endl << std:: endl;
         std::cout << "1. Vertical " << std:: endl;
         std::cout << "2. Horizontal " << std:: endl;
+        std::cin.clear();
         std::cin >> select;
 
     }while(select != '1' && select != '2' );
@@ -195,7 +196,7 @@ bool GameMenu::firstPlay(Player &player) {
         return false;
     }
     else {
-        std::cout<<game->getBoard()->toString()<<std::endl;
+        //std::cout<<game->getBoard()->toString()<<std::endl;
         if (game->getBoard()->centerEmpty() && DataBase::searchWord(word)) {
             std::cout << "Valid Play " << std::endl;
             game->getBoard()->addToBoard(select, aux, column2, row + 1);
@@ -263,7 +264,7 @@ bool GameMenu::afterFirstPlay(Player &player) {
             std::cout << "Palabra formandose: " << word << std::endl;
 
         if (select == '1') {
-            if (game->getBoard()->isEmpty(row++, column2)) {
+            if (game->getBoard()->isEmpty(row++, column2)->getLetter().getLetter() != '-') {
                 word += game->getBoard()->isEmpty(row++, column2)->getLetter().getLetter();
                 aux.addDown(game->getBoard()->isEmpty(row++, column2));
             } else {

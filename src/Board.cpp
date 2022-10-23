@@ -103,7 +103,18 @@ bool Board::PrePlay(int f,int c,int tam,char ori){
     }
     return true;
 }
+bool Board::validWord(int F, int C,char orientation) {
+    std::string wordHor = "";
+    std::string wordVer = "";
+    for(int i=1;i<10;i++){
+        wordHor += board[i][C]->getLetter().getLetter();
+    }
+    for(int i=1;i<10;i++){
+        wordHor += board[i][F]->getLetter().getLetter();
+    }
 
+return false;
+}
 
 
 
